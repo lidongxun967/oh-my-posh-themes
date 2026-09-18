@@ -68,7 +68,14 @@
           "style": "diamond",
           "leading_diamond": "",
           "trailing_diamond": " ",
-          "template": "  {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}{{ if and (gt .Ahead 0) (gt .Behind 0) }} ↕{{ else if gt .Ahead 0 }} ↑{{ else if gt .Behind 0 }} ↓{{ end }} ",
+          "templates": [
+            "  {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}",
+            "{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}",
+            "{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}",
+            "{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}",
+            "{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }} ↕{{ else if gt .Ahead 0 }} ↑{{ else if gt .Behind 0 }} ↓{{ end }}</> "
+          ],
           "foreground": "p:base",
           "background": "p:green",
           "background_templates": [
@@ -126,7 +133,10 @@
           "style": "diamond",
           "leading_diamond": "",
           "trailing_diamond": " ",
-          "template": "  {{ .CurrentDate | date \"15:04:05\" }}{{ if and (.Segments.Executiontime) (gt .Segments.Executiontime.Ms 500.0) }} |  {{ .Segments.Executiontime.FormattedMs }}{{ end }} ",
+          "templates": [
+            "  {{ .CurrentDate | date \"15:04:05\" }}",
+            "{{ if and (.Segments.Executiontime) (gt .Segments.Executiontime.Ms 500.0) }} |  {{ .Segments.Executiontime.FormattedMs }}{{ end }}</> "
+          ],
           "foreground": "p:base",
           "background": "p:subtext",
           "min_width": 100
